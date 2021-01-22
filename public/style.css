@@ -89,7 +89,7 @@ nav {
 #testing-container span {
   color: red;
 }
-iframe#plaid-link-iframe-1 {
+iframe {
   height: 100%;
   width: 100%;
   margin: 15vh 0%;

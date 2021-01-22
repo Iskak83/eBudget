@@ -72,12 +72,28 @@ nav {
   margin: 25px;
 }
 
-#plaid-container {
+#plaid-container,
+#testing-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60vh;
   padding: 20px;
+}
+#testing-container {
+  align-items: flex-end;
+  /* background-color: rgb(154, 154, 240); */
+  height: 14.5vh;
+  padding: 5px;
+}
+#testing-container span {
+  color: red;
+}
+iframe#plaid-link-iframe-1 {
+  height: 100%;
+  width: 100%;
+  margin: 15vh 0%;
+  font-size: 15px;
 }
 
 .accountOverViewContainer {

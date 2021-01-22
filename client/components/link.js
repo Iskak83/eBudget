@@ -12,11 +12,14 @@ class PlaidLogin extends Component {
   constructor() {
     super()
     this.state = {
-      plaidAccess: false
+      plaidAccess: false,
+      testing: true,
+      containerName: 'plaid-container'
     }
 
     this.handleOnSuccess = this.handleOnSuccess.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
+    this.onClick = this.onClick.bind(this)
   }
   async getTransactions() {
     await this.props.setAccessTokenFetch(this.props.userId)
@@ -29,14 +32,17 @@ class PlaidLogin extends Component {
     })
     this.setState({plaidAccess: true})
   }
-
+  async onClick() {
+    this.setState({testing: false})
+    this.setState({containerName: 'testing-container'})
+  }
   handleOnExit() {}
 
   render() {
     return (
       <div>
         {!this.state.plaidAccess ? (
-          <div className="" id="plaid-container">
+          <div className="" id={this.state.containerName}>
             <PlaidLink
               clientName="eBudget"
               env="sandbox"
@@ -44,15 +50,24 @@ class PlaidLogin extends Component {
               publicKey="ae9b699cddb974bc89c10074b92e85"
               onExit={this.handleOnExit}
               onSuccess={this.handleOnSuccess}
-              className="plaidLink"
+              id="plaidLink"
+              onClick={() => this.onClick()}
             >
-              <button
-                type="submit"
-                className="btn-large light-blue lighten-2"
-                id="plaidButton"
-              >
-                Click here to connect your bank!
-              </button>
+              {this.state.testing ? (
+                <div
+                  type="submit"
+                  id="plaidButton"
+                  className="btn-large blue"
+                  onClick={() => this.onClick()}
+                >
+                  Click here to connect your bank!
+                </div>
+              ) : (
+                <div id="testing-credentials" className="btn-very-small yellow">
+                  Bank test credentials:{'{'} <span>username</span>: user_good,{' '}
+                  <span>password</span>: pass_good{'}'}
+                </div>
+              )}
             </PlaidLink>
           </div>
         ) : (

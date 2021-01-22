@@ -877,10 +877,13 @@ var PlaidLogin = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this);
     _this.state = {
-      plaidAccess: false
+      plaidAccess: false,
+      testing: true,
+      containerName: 'plaid-container'
     };
     _this.handleOnSuccess = _this.handleOnSuccess.bind(_assertThisInitialized(_this));
     _this.getTransactions = _this.getTransactions.bind(_assertThisInitialized(_this));
+    _this.onClick = _this.onClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -943,14 +946,45 @@ var PlaidLogin = /*#__PURE__*/function (_Component) {
       return handleOnSuccess;
     }()
   }, {
+    key: "onClick",
+    value: function () {
+      var _onClick = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                this.setState({
+                  testing: false
+                });
+                this.setState({
+                  containerName: 'testing-container'
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function onClick() {
+        return _onClick.apply(this, arguments);
+      }
+
+      return onClick;
+    }()
+  }, {
     key: "handleOnExit",
     value: function handleOnExit() {}
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !this.state.plaidAccess ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "",
-        id: "plaid-container"
+        id: this.state.containerName
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_plaid_link__WEBPACK_IMPORTED_MODULE_1__["PlaidLink"], {
         clientName: "eBudget",
         env: "sandbox",
@@ -958,12 +992,21 @@ var PlaidLogin = /*#__PURE__*/function (_Component) {
         publicKey: "ae9b699cddb974bc89c10074b92e85",
         onExit: this.handleOnExit,
         onSuccess: this.handleOnSuccess,
-        className: "plaidLink"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "plaidLink",
+        onClick: function onClick() {
+          return _this2.onClick();
+        }
+      }, this.state.testing ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         type: "submit",
-        className: "btn-large light-blue lighten-2",
-        id: "plaidButton"
-      }, "Click here to connect your bank!"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "plaidButton",
+        className: "btn-large blue",
+        onClick: function onClick() {
+          return _this2.onClick();
+        }
+      }, "Click here to connect your bank!") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "testing-credentials",
+        className: "btn-very-small yellow"
+      }, "Bank test credentials:", "{", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "username"), ": user_good,", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "password"), ": pass_good", "}"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "plaid-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",

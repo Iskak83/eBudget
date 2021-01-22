@@ -63,7 +63,8 @@ class PlaidLogin extends Component {
                   Click here to connect your bank!
                 </div>
               ) : (
-                <div id="testing-credentials" className="btn-very-small yellow">
+//                 className="btn-very-small yellow"
+                <div id="testing-credentials" >
                   Test bank credentials:{'{'} <span>User ID</span>: user_good 
                   <span>Password</span>: pass_good{'}'}
                 </div>

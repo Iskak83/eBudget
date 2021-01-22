@@ -88,7 +88,6 @@ const mapState = state => {
   }
 }
 const mapDispatch = dispatch => {
-  console.log('>>>>>>>')
   return {
     getIncome: () => dispatch(fetchIncome())
   }

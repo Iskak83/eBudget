@@ -5,12 +5,10 @@ const Budget = props => {
   const [amount, setAmount] = useState(0)
   const [toggle, setToggle] = useState(false)
 
-  let income = 0
+  let income = 60000
 
   useEffect(() => {
-    ;(async () => {
-      await props.getIncome()
-    })()
+    props.getIncome()
   }, [])
 
   const handleChange = event => {
@@ -29,9 +27,9 @@ const Budget = props => {
       Edit Annual Savings Goal
     </button>
   )
-  if (props.incomePlaid.length) {
-    income = props.incomePlaid[0].last_year_income
-  }
+  // if (props.incomePlaid.length) {
+  //   income = props.incomePlaid[0].last_year_income
+  // }
   const savingsForm = (
     <div>
       <form onSubmit={handleSubmit}>
@@ -54,28 +52,28 @@ const Budget = props => {
     <div className="budgetContainer">
       <h2>Budget Calculator</h2>
       <ul className="collection">
-        {props.incomePlaid.length && (
-          <table className="striped">
-            <tbody>
-              <tr>
-                <td>Annual Savings Goal</td>
-                <td>${amount}</td>
-              </tr>
-              <tr>
-                <td>Monthly Savings</td>
-                <td>${(amount / 12).toFixed(2)}</td>
-              </tr>
-              <tr>
-                <td>Expected Monthly Income</td>
-                <td>${(income / 12).toFixed(2)}</td>
-              </tr>
-              <tr>
-                <td>Expected Monthly Budget</td>
-                <td>${(income / 12 - amount / 12).toFixed(2)}</td>
-              </tr>
-            </tbody>
-          </table>
-        )}
+        {/* {props.incomePlaid.length && ( */}
+        <table className="striped">
+          <tbody>
+            <tr>
+              <td>Annual Savings Goal</td>
+              <td>${amount}</td>
+            </tr>
+            <tr>
+              <td>Monthly Savings</td>
+              <td>${(amount / 12).toFixed(2)}</td>
+            </tr>
+            <tr>
+              <td>Expected Monthly Income</td>
+              <td>${(income / 12).toFixed(2)}</td>
+            </tr>
+            <tr>
+              <td>Expected Monthly Budget</td>
+              <td>${(income / 12 - amount / 12).toFixed(2)}</td>
+            </tr>
+          </tbody>
+        </table>
+        {/* )} */}
       </ul>
       <div className="buttonOrFormContainer">{buttonOrForm}</div>
     </div>
@@ -85,11 +83,12 @@ const Budget = props => {
 const mapState = state => {
   return {
     transactions: state.transactions,
-    incomePlaid: state.income,
+    incomePlaid: state,
     plaidAccessToken: state.user.plaidAccessToken
   }
 }
 const mapDispatch = dispatch => {
+  console.log('>>>>>>>')
   return {
     getIncome: () => dispatch(fetchIncome())
   }

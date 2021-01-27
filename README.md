@@ -1,3 +1,13 @@
+<p align="center">
+  <a href="https://quizzical-euclid-762bca.netlify.app/">
+    <img alt="im" src="public/eBudget.jpg" width="150" />
+  </a>
+</p>
+<h1 align="center">
+ ebudget-fsa2020.herokuapp.com
+</h1>
+
+
 # eBudget
 
 Budgeting can be hard. Our app makes it easy to create a well-organized budget for all your personal financial needs.

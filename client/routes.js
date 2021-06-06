@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {me} from './store'
-import {Logging, Signup} from './components/auth-form'
-
+// import { Logging, Signup } from 'sequelize/types'
+const Auth = lazy(() => import('./components/auth-form'))
+// const Auth = lazy(() => import('./components/auth-form'))
 const UserHome = lazy(() => import('./components/user-home'))
 const AccountOverview = lazy(() => import('./components/account-overview'))
 const PlaidLogin = lazy(() => import('./components/link'))
@@ -30,8 +31,8 @@ class Routes extends Component {
     this.loadPlaidToken()
     return (
       <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Auth} />
+        <Route path="/signup" component={Auth} />
 
         {isLoggedIn &&
           plaidAccessToken && (

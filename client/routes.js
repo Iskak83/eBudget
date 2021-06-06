@@ -1,14 +1,16 @@
-import React, {Component} from 'react'
+import React, {Component, lazy} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
 import {me} from './store'
-import AccountOverview from './components/account-overview'
-import PlaidLogin from './components/link'
-import MonthlySpend from './components/monthlySpend'
-import YearlySpend from './components/yearlySpend'
-import Budget from './components/Budget'
+import {Logging, Signup} from './components/auth-form'
+
+const UserHome = lazy(() => import('./components/user-home'))
+const AccountOverview = lazy(() => import('./components/account-overview'))
+const PlaidLogin = lazy(() => import('./components/link'))
+const MonthlySpend = lazy(() => import('./components/monthlySpend'))
+const YearlySpend = lazy(() => import('./components/yearlySpend'))
+const Budget = lazy(() => import('./components/Budget'))
 
 class Routes extends Component {
   constructor() {

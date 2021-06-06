@@ -8,8 +8,6 @@ var PLAID_PUBLIC_KEY = process.env.PLAID_PUBLIC_KEY
 var PLAID_ENV = 'sandbox'
 
 var ACCESS_TOKEN = null
-// var PUBLIC_TOKEN = null
-// var ITEM_ID = null
 
 // Initialize the Plaid client
 var client = new plaid.Client(
@@ -41,7 +39,6 @@ const getTransactions = (req, res) => {
     .subtract(30, 'days')
     .format('YYYY-MM-DD')
   let endDate = moment().format('YYYY-MM-DD')
-  console.log('made it past variables')
 
   client.getTransactions(
     ACCESS_TOKEN,
@@ -65,7 +62,6 @@ const yearlyTransaction = (req, res) => {
     .format('YYYY-MM-DD')
   let endDate = moment().format('YYYY-MM-DD')
   console.log('made it past variables')
-
   client.getTransactions(
     ACCESS_TOKEN,
     startDate,
@@ -80,21 +76,21 @@ const yearlyTransaction = (req, res) => {
   )
 }
 
-const income = async (req, res, next) => {
-  ACCESS_TOKEN = await req.user.dataValues.plaidAccessToken
-  client.getIncome(ACCESS_TOKEN, (_err, result) => {
-    try {
-      let userIncome = result.income
-      res.json({income: userIncome})
-    } catch (error) {
-      next(error)
-    }
-  })
-}
+// const income = async (req, res, next) => {
+//   ACCESS_TOKEN = await req.user.dataValues.plaidAccessToken
+//   client.getIncome(ACCESS_TOKEN, (_err, result) => {
+
+//     try {
+//       let userIncome = result.income
+//       res.json({income: userIncome})
+//     } catch (error) {
+//       next(error)
+//     }
+//   })
+// }
 
 module.exports = {
   receivePublicToken,
   getTransactions,
-  yearlyTransaction,
-  income
+  yearlyTransaction
 }

@@ -21,7 +21,7 @@ class AccountOverview extends React.Component {
 
     return (
       <div className="accountOverViewContainer">
-        {transactions === undefined || !transactions.length ? (
+        {!transactions || !transactions.length ? (
           <h3>Loading...</h3>
         ) : (
           <div>

@@ -55,7 +55,6 @@ const mapDispatch = dispatch => {
   }
 }
 
-// export default Login = connect(mapLogin, mapDispatch)(AuthForm)
 export default (Auth = connect(mapSignup, mapDispatch)(AuthForm))
 
 AuthForm.propTypes = {
